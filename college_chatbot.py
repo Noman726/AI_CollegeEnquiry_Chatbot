@@ -15,6 +15,10 @@ lemmatizer = WordNetLemmatizer()
 
 intents = {
     "greeting": {
+    "college_identity": {
+        "patterns": ["which college is this", "what is the name of the college", "name of this college", "identify this college", "college name"],
+        "responses": ["Jai Hind College"]
+    },
         "patterns": ["hello", "hi", "good morning", "good evening", "hey"],
         "responses": ["Hello! How can I assist you about the college today?",
                       "Hi there! What would you like to know about the college?"]
