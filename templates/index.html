@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>College Enquiry Bot</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .chatbox { width: 50%; margin: auto; border: 1px solid #ccc; border-radius: 10px; padding: 20px; }
+        #chatlog { height: 300px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px; text-align: left; }
+        input[type=text] { width: 80%; padding: 10px; }
+        button { padding: 10px 20px; }
+    </style>
+</head>
+<body>
+    <h2>College Enquiry Bot</h2>
+    <div class="chatbox">
+        <div id="chatlog"></div>
+        <br>
+        <input id="msg" type="text" placeholder="Ask something about college..."/>
+        <button onclick="send()">Send</button>
+    </div>
+
+    <script>
+        function send(){
+            let userMsg = document.getElementById("msg").value;
+            let chatlog = document.getElementById("chatlog");
+            chatlog.innerHTML += "<b>You:</b> " + userMsg + "<br>";
+
+            fetch("/get?msg=" + userMsg)
+            .then(response => response.text())
+            .then(data => {
+                chatlog.innerHTML += "<b>Bot:</b> " + data + "<br><br>";
+                document.getElementById("msg").value = "";
+                chatlog.scrollTop = chatlog.scrollHeight;
+            });
+        }
+    </script>
+</body>
+</html>
